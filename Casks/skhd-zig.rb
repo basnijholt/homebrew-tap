@@ -1,6 +1,6 @@
 cask "skhd-zig" do
-  version "0.1.4"
-  sha256 "777070c8a3b152fedac79f655329ff937984d1c71e7a955923bf7007cc59263d"
+  version "0.1.6"
+  sha256 "6cd9dbbe197780aa16bc923aabf655ae8ed625729ec082890c3ebc8c7b142ac6"
 
   url "https://github.com/jackielii/skhd.zig/releases/download/v#{version}/skhd-arm64-macos.tar.gz"
   name "skhd.zig"

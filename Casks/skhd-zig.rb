@@ -1,14 +1,17 @@
 cask "skhd-zig" do
-  version "0.1.6"
-  sha256 "6cd9dbbe197780aa16bc923aabf655ae8ed625729ec082890c3ebc8c7b142ac6"
+  # `#{arch}` resolves to arm64 / x86_64 — matches the release tarball names.
+  arch arm: "arm64", intel: "x86_64"
 
-  url "https://github.com/jackielii/skhd.zig/releases/download/v#{version}/skhd-arm64-macos.tar.gz"
+  version "0.1.6"
+  sha256 arm:   "6cd9dbbe197780aa16bc923aabf655ae8ed625729ec082890c3ebc8c7b142ac6",
+         intel: "b7a252ef2e51fedc143fa2ffe20b2b8f0fcc2e2fc33a51be42428d24d1b66f80"
+
+  url "https://github.com/jackielii/skhd.zig/releases/download/v#{version}/skhd-#{arch}-macos.tar.gz"
   name "skhd.zig"
   desc "Simple hotkey daemon written in Zig"
   homepage "https://github.com/jackielii/skhd.zig"
 
-  # Apple Silicon only (Intel builds paused as of v0.0.18 — no demand).
-  depends_on arch: :arm64
+  # Intel builds are cross-compiled from the arm64 runner (see release.yml).
   depends_on macos: ">= :big_sur"
 
   app "skhd.app"

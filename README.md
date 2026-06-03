@@ -1,6 +1,6 @@
 # homebrew-tap
 
-Homebrew tap for Agent CLI.
+Homebrew tap for [Agent CLI](https://github.com/basnijholt/agent-cli).
 
 ## Install
 

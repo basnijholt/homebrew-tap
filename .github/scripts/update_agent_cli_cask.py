@@ -36,7 +36,7 @@ def api_json(url: str) -> dict[str, object]:
 def latest_release() -> tuple[str, str]:
     release = api_json(f"https://api.github.com/repos/{REPO}/releases/latest")
     tag_name = str(release["tag_name"])
-    version = tag_name[1:] if tag_name.startswith("v") else tag_name
+    version = normalize_version(tag_name)
     assets = release.get("assets", [])
     if not isinstance(assets, list):
         raise RuntimeError("Latest release has no assets list")
@@ -48,6 +48,35 @@ def latest_release() -> tuple[str, str]:
             return version, str(asset["browser_download_url"])
 
     raise RuntimeError(f"Latest release {tag_name} has no {ASSET_NAME} asset")
+
+
+def normalize_version(value: str) -> str:
+    return value[1:] if value.startswith("v") else value
+
+
+def release_from_dispatch_event() -> tuple[str, str] | None:
+    if os.environ.get("GITHUB_EVENT_NAME") != "repository_dispatch":
+        return None
+
+    event_path = os.environ.get("GITHUB_EVENT_PATH")
+    if not event_path:
+        raise RuntimeError("GITHUB_EVENT_PATH is required for repository_dispatch")
+
+    with Path(event_path).open(encoding="utf-8") as event_file:
+        event = json.load(event_file)
+
+    payload = event.get("client_payload")
+    if not isinstance(payload, dict):
+        raise RuntimeError("repository_dispatch payload must include client_payload")
+
+    tag_name = payload.get("tag_name")
+    asset_url = payload.get("asset_url")
+    if not isinstance(tag_name, str) or not tag_name:
+        raise RuntimeError("repository_dispatch payload must include tag_name")
+    if not isinstance(asset_url, str) or not asset_url:
+        raise RuntimeError("repository_dispatch payload must include asset_url")
+
+    return normalize_version(tag_name), asset_url
 
 
 def download_sha256(url: str) -> str:
@@ -88,11 +117,14 @@ def main() -> int:
     parser.add_argument("--asset-url", help=f"Download URL for {ASSET_NAME}")
     args = parser.parse_args()
 
+    dispatch_release = release_from_dispatch_event()
     if args.version or args.asset_url:
         if not args.version or not args.asset_url:
             parser.error("--version and --asset-url must be passed together")
-        version = args.version
+        version = normalize_version(args.version)
         asset_url = args.asset_url
+    elif dispatch_release:
+        version, asset_url = dispatch_release
     else:
         version, asset_url = latest_release()
 

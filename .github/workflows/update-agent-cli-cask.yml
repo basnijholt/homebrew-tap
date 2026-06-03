@@ -4,6 +4,8 @@ on:
   schedule:
     - cron: "17 8 * * *"
   workflow_dispatch:
+  repository_dispatch:
+    types: [agent-cli-release]
 
 permissions:
   contents: write
@@ -19,7 +21,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Update cask from latest release
+      - name: Update cask from release
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python3 .github/scripts/update_agent_cli_cask.py

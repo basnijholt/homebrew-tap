@@ -11,6 +11,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 SCRIPT_PATH = Path(__file__).parents[1] / ".github" / "scripts" / "update_agent_cli_cask.py"
+WORKFLOW_PATH = Path(__file__).parents[1] / ".github" / "workflows" / "update-agent-cli-cask.yml"
 spec = importlib.util.spec_from_file_location("update_agent_cli_cask", SCRIPT_PATH)
 assert spec is not None
 assert spec.loader is not None
@@ -48,6 +49,11 @@ class ReleaseSourceTests(unittest.TestCase):
     def test_non_dispatch_event_does_not_supply_release(self) -> None:
         with patch.dict(os.environ, {"GITHUB_EVENT_NAME": "workflow_dispatch"}, clear=False):
             self.assertIsNone(update_agent_cli_cask.release_from_dispatch_event())
+
+    def test_workflow_authenticates_homebrew_github_api_calls(self) -> None:
+        workflow = WORKFLOW_PATH.read_text(encoding="utf-8")
+
+        self.assertIn("HOMEBREW_GITHUB_API_TOKEN: ${{ github.token }}", workflow)
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 cask "agent-cli" do
-  version "0.97.1"
-  sha256 "7b2d3f98df5fae61fb8f01ab92b496c6bd815b34d1a967a65eaf030a57e7ac04"
+  version "0.97.2"
+  sha256 "81b7f646672e9dab87cb6eac918e737cfcf6d00bec4e931d560232262844a902"
 
   url "https://github.com/basnijholt/agent-cli/releases/download/v#{version}/AgentCLI.dmg"
   name "Agent CLI"

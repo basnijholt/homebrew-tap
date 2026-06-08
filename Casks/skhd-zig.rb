@@ -12,7 +12,7 @@ cask "skhd-zig" do
   homepage "https://github.com/jackielii/skhd.zig"
 
   # Intel builds are cross-compiled from the arm64 runner (see release.yml).
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "skhd.app"
   # The CLI lives inside the bundle; surface it on PATH so `skhd ...` works

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Update the app-hotkeys formula from the latest GitHub release."""
+"""Update the macos-hotkey-app-switcher formula from the latest GitHub release."""
 
 from __future__ import annotations
 
@@ -12,13 +12,13 @@ import sys
 from pathlib import Path
 from urllib.request import Request, urlopen
 
-REPO = "basnijholt/app-hotkeys"
+REPO = "basnijholt/macos-hotkey-app-switcher"
 ROOT = Path(__file__).resolve().parents[2]
-FORMULA_PATH = ROOT / "Formula" / "app-hotkeys.rb"
+FORMULA_PATH = ROOT / "Formula" / "macos-hotkey-app-switcher.rb"
 
 
 def asset_name(version: str) -> str:
-    return f"app-hotkeys-{version}-macos-universal.tar.gz"
+    return f"macos-hotkey-app-switcher-{version}-macos-universal.tar.gz"
 
 
 def asset_url(version: str) -> str:
@@ -89,11 +89,11 @@ def main() -> int:
 
     text = FORMULA_PATH.read_text(encoding="utf-8")
     if f'  url "{asset_url(version)}"' in text:
-        print(f"app-hotkeys formula already up to date at {version}")
+        print(f"macos-hotkey-app-switcher formula already up to date at {version}")
         return 0
 
     FORMULA_PATH.write_text(update_formula(text, version, download_sha256(asset_url(version))), encoding="utf-8")
-    print(f"updated app-hotkeys formula to {version}")
+    print(f"updated macos-hotkey-app-switcher formula to {version}")
     return 0
 
 

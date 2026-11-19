@@ -1,4 +1,4 @@
-"""Tests for the app-hotkeys formula updater."""
+"""Tests for the macos-hotkey-app-switcher formula updater."""
 
 from __future__ import annotations
 
@@ -11,9 +11,9 @@ from pathlib import Path
 from unittest.mock import patch
 
 ROOT = Path(__file__).parents[1]
-SCRIPT_PATH = ROOT / ".github" / "scripts" / "update_app_hotkeys_formula.py"
-WORKFLOW_PATH = ROOT / ".github" / "workflows" / "update-app-hotkeys-formula.yml"
-spec = importlib.util.spec_from_file_location("update_app_hotkeys_formula", SCRIPT_PATH)
+SCRIPT_PATH = ROOT / ".github" / "scripts" / "update_macos_hotkey_app_switcher_formula.py"
+WORKFLOW_PATH = ROOT / ".github" / "workflows" / "update-macos-hotkey-app-switcher-formula.yml"
+spec = importlib.util.spec_from_file_location("update_macos_hotkey_app_switcher_formula", SCRIPT_PATH)
 assert spec is not None
 assert spec.loader is not None
 updater = importlib.util.module_from_spec(spec)
@@ -26,8 +26,8 @@ class UpdateFormulaTests(unittest.TestCase):
         updated = updater.update_formula(text, "9.8.7", "a" * 64)
 
         self.assertIn(
-            '  url "https://github.com/basnijholt/app-hotkeys/releases/download/v9.8.7/'
-            'app-hotkeys-9.8.7-macos-universal.tar.gz"',
+            '  url "https://github.com/basnijholt/macos-hotkey-app-switcher/releases/download/v9.8.7/'
+            'macos-hotkey-app-switcher-9.8.7-macos-universal.tar.gz"',
             updated,
         )
         self.assertIn(f'  sha256 "{"a" * 64}"', updated)

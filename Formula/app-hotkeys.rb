@@ -1,8 +1,8 @@
 class AppHotkeys < Formula
   desc "Global hotkeys that bring an app to the front, read from a plain text file"
   homepage "https://github.com/basnijholt/app-hotkeys"
-  url "https://github.com/basnijholt/app-hotkeys/releases/download/v0.1.0/app-hotkeys-0.1.0-macos-universal.tar.gz"
-  sha256 "4a53673682cf7d2199b77e2367da26c12d7e9beb4de008824e88fab3011de240"
+  url "https://github.com/basnijholt/app-hotkeys/releases/download/v0.1.1/app-hotkeys-0.1.1-macos-universal.tar.gz"
+  sha256 "40d1a1cdc90659cbe01de241ba357c30da03d6988401161465c874e6290a0aed"
   license "MIT"
 
   livecheck do

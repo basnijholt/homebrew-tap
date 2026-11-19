@@ -1,15 +1,15 @@
 # homebrew-tap
 
-Homebrew tap for [Agent CLI](https://github.com/basnijholt/agent-cli) and [app-hotkeys](https://github.com/basnijholt/app-hotkeys).
+Homebrew tap for [Agent CLI](https://github.com/basnijholt/agent-cli) and [macos-hotkey-app-switcher](https://github.com/basnijholt/macos-hotkey-app-switcher).
 
 ## Install
 
 | Package | Install |
 |---|---|
 | [Agent CLI](https://github.com/basnijholt/agent-cli): local-first AI voice and text tools with menu bar integration | `brew install --cask basnijholt/tap/agent-cli` |
-| [app-hotkeys](https://github.com/basnijholt/app-hotkeys): global hotkeys that bring an app to the front | `brew install basnijholt/tap/app-hotkeys` |
+| [macos-hotkey-app-switcher](https://github.com/basnijholt/macos-hotkey-app-switcher): global hotkeys that bring an app to the front | `brew install basnijholt/tap/macos-hotkey-app-switcher` |
 
-Run app-hotkeys in the background with `brew services start app-hotkeys`.
+Run macos-hotkey-app-switcher in the background with `brew services start macos-hotkey-app-switcher`. It was called `app-hotkeys` before 0.2.0; `formula_renames.json` migrates old installs on `brew update`.
 
 ## Updates
 

@@ -27,9 +27,6 @@ class MacosHotkeyAppSwitcher < Formula
 
       If another app already holds the same key combination, both fire.
       Turn off the other app's binding first.
-
-      Upgrading from app-hotkeys? Move ~/.config/app-hotkeys/hotkeys.conf
-      to the new path above and run: brew services restart macos-hotkey-app-switcher
     EOS
   end
 

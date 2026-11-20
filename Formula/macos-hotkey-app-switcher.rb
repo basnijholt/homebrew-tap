@@ -1,8 +1,8 @@
 class MacosHotkeyAppSwitcher < Formula
   desc "Global hotkeys that bring an app to the front, read from a plain text file"
   homepage "https://github.com/basnijholt/macos-hotkey-app-switcher"
-  url "https://github.com/basnijholt/macos-hotkey-app-switcher/releases/download/v0.2.0/macos-hotkey-app-switcher-0.2.0-macos-universal.tar.gz"
-  sha256 "91f6ec3b91acc1145201618f8cc0567cdac539011523ff4fd050c54f1e6b0914"
+  url "https://github.com/basnijholt/macos-hotkey-app-switcher/releases/download/v0.3.0/macos-hotkey-app-switcher-0.3.0-macos-universal.tar.gz"
+  sha256 "6c16adc67e90219763cd0ced9a7f0a9ba06129f357e32e9be6c5fd0afca40cc2"
   license "MIT"
 
   livecheck do
